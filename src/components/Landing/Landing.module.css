@@ -2,23 +2,23 @@
   background: #f0f1f6;
 }
 
-.landing__container {
+.container {
   max-width: 1240px;
   margin: 0 auto;
   padding: 60px 0;
 }
 
-.landing__preview {
+.preview {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.landing__preview-info {
+.previewInfo {
   width: 60%;
 }
 
-.landing__title {
+.title {
   font-family: "Open Sans Hebrew Condensed", sans-serif;
   color: #212327;
   padding: 0;
@@ -29,7 +29,7 @@
   margin-bottom: 20px;
 }
 
-.landing__subtitle {
+.subtitle {
   max-width: 400px;
   margin: 0 0 40px;
   font-weight: 400;
@@ -38,7 +38,7 @@
   color:  #494949;
 }
 
-.landing__btn {
+.btn {
   font-family: "Open Sans Hebrew", sans-serif;
   background: #618dff;
   padding: 17px 20px;
@@ -51,23 +51,23 @@
   border: none;
 }
 
-.landing__btn:hover {
+.btn:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
-.landing__preview-form {
+.previewForm {
   width: 40%;
 }
 
-.landing__form-image {
+.formImage {
   max-width: 468px;
   max-height: 547px;
   padding: 0;
   margin: 0;
 }
 
-.landing__form-img {
+.formImg {
   max-width: 100%;
   max-height: 100%;
   object-fit: cover;

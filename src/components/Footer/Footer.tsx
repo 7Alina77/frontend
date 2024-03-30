@@ -1,27 +1,28 @@
 import React, { FC } from 'react';
-import './Footer.css';
 import { Link } from 'react-router-dom';
+import styles from './Footer.module.css';
+import stylesLink from '../../pages/MainPage/MainPage.module.css';
 
 const Footer: FC = (): React.ReactElement => {
   return (
-    <footer className='footer'>
-      <div className='footer__container'>
-        <nav className='footer__navigation'>
-          <ul className='footer__links'>
-            <li className='footer__link'>
-              <Link to="/#" className='footer__link-terms link'>
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <nav className={styles.navigation}>
+          <ul className={styles.links}>
+            <li className={styles.link}>
+              <Link to="/#" className={`${styles.linkTerms} ${stylesLink.link}`}>
                 Условия пользования сервисом
               </Link>
             </li>
-            <li className='footer__link'>
-              <Link to="/#" className='footer__link-terms link'>
+            <li className={styles.link}>
+              <Link to="/#" className={`${styles.linkTerms} ${stylesLink.link}`}>
                 Политика конфиденциальности
               </Link>
             </li>
           </ul>
-          <ul className='footer__links'>
-            <li className='footer__link'>
-              <a className='footer__link-mail link' href="mailto:monitoringofindividuals@gmail.com">monitoringofindividuals@gmail.com</a>
+          <ul className={styles.links}>
+            <li className={styles.link}>
+              <a className={`${styles.linkMail} ${stylesLink.link}`} href="mailto:monitoringofindividuals@gmail.com">monitoringofindividuals@gmail.com</a>
             </li>
           </ul>
         </nav>

@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo from '../../images/logo.svg';
 import userIcon from '../../images/userIcon.svg';
-import './Header.css';
 import { RootState } from '../../services/actions/types';
+import styles from './Header.module.css';
+import stylesLink from '../../pages/MainPage/MainPage.module.css';
 
 const Header: FC = (): React.ReactElement => {
   // TODO
@@ -20,27 +21,27 @@ const Header: FC = (): React.ReactElement => {
   };
 
   return (
-    <header className="header">
-      <div className="header__container">
-        <Link to="/" className="header__link-to-main">
-          <div className="header__logo">
-            <img src={logo} alt="logo" className="header__logo-img" />
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <Link to="/" className={styles.linkToMain}>
+          <div className={styles.logo}>
+            <img src={logo} alt="logo" className={styles.logoImg} />
           </div>
-          <p className="header__monitoring link">Мониторинг физических лиц</p>
+          <p className={`${styles.monitoring} ${stylesLink.link}`}>Мониторинг физических лиц</p>
         </Link>
         {currentUser.isLoggedIn === false ? (
-          <nav className="header__nav">
-            <ul className="header__auth">
-              <li className="header__auth-item link">
-                <Link to="/signup" className="header__button-link" onClick={openSignUpPopup}>
-                  <button type="button" className="header__button link">
+          <nav className={styles.nav}>
+            <ul className={styles.auth}>
+              <li className={`${styles.authItem} ${stylesLink.link}`}>
+                <Link to="/signup" className={styles.buttonLink} onClick={openSignUpPopup}>
+                  <button type="button" className={`${styles.button} ${stylesLink.link}`}>
                     Регистрация
                   </button>
                 </Link>
               </li>
-              <li className="header__auth-item link">
-                <Link to="/signin" className="header__button-link" onClick={openSignInPopup}>
-                  <button type="button" className="header__button link">
+              <li className={`${styles.authItem} ${stylesLink.link}`}>
+                <Link to="/signin" className={styles.buttonLink} onClick={openSignInPopup}>
+                  <button type="button" className={`${styles.button} ${stylesLink.link}`}>
                     Вход
                   </button>
                 </Link>
@@ -48,12 +49,12 @@ const Header: FC = (): React.ReactElement => {
             </ul>
           </nav>
         ) : (
-          <div className="header__user-container link">
-            <p className="header__user-info">
+          <div className={`${styles.userContainer} ${stylesLink.link}`}>
+            <p className={styles.userInfo}>
               {currentUser.firstName} {currentUser.lastName}
             </p>
-            <div className="header__user-logo">
-              <img src={userIcon} alt="user-logo" className="header__user-logo-img" />
+            <div className={styles.userLogo}>
+              <img src={userIcon} alt="user-logo" className={styles.userLogoImg} />
             </div>
           </div>
         )}

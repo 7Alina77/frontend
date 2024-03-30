@@ -2,13 +2,13 @@
   background: #f0f1f6;
 }
 
-.about__container {
+.container {
   max-width: 1244px;
   margin: 0 auto;
   padding: 80px 0;
 }
 
-.about__title {
+.title {
   text-align: center;
   margin: 0 0 40px;
   font-weight: 700;
@@ -18,12 +18,12 @@
   font-family: 'Open Sans Hebrew Condensed', sans-serif;
 }
 
-.about__columns {
+.columns {
   display: flex;
   justify-content: space-between;
 }
 
-.about__column {
+.column {
   box-sizing: border-box;
   max-width: 400px;
   min-height: 400px;
@@ -35,11 +35,11 @@
   transition: 1s;
 }
 
-.about__column:hover {
+.column:hover {
   transform: scale(1.1);
 }
 
-.about__column-container {
+.columnContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -48,7 +48,7 @@
   padding: 16px 30px;
 }
 
-.about__image-background {
+.imageBackground {
   border-radius: 28px;
   width: 326px;
   min-height: 200px;
@@ -59,20 +59,20 @@
   margin: 0 0 10px;
 }
 
-.about__image-container {
+.imageContainer {
   max-width: 140px;
   max-height: 140px;
   box-sizing: border-box;
 }
 
-.about__image-img {
+.imageImg {
   max-width: 100%;
   max-height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.about__column-title {
+.columnTitle {
   color: #212327;
   font-family: 'Open Sans Hebrew', sans-serif;
   margin: 0 0 10px;
@@ -80,7 +80,7 @@
   font-size: 28px;
 }
 
-.about__column-text {
+.columnText {
   margin: 12px 0 0;
   font-weight: 400;
   font-size: 20px;

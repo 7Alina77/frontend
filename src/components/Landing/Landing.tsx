@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import './Landing.css';
 import { useNavigate } from 'react-router-dom';
 import report from '../../images/reportOnLanding.svg';
+import styles from './Landing.module.css';
+import stylesLink from '../../pages/MainPage/MainPage.module.css';
 
 const Landing: FC = (): React.ReactElement => {
   const navigate = useNavigate();
@@ -11,17 +12,17 @@ const Landing: FC = (): React.ReactElement => {
   };
 
   return (
-    <section className='landing'>
-      <div className='landing__container'>
-        <div className='landing__preview'>
-          <div className='landing__preview-info'>
-            <h1 className='landing__title'>Быстрая проверка физических лиц</h1>
-            <p className='landing__subtitle'>Введите данные для проверки и получите отчет</p>
-            <button type='submit' className='landing__btn link' onClick={openSignInPopup}>Попробовать бесплатно</button>
+    <section className={styles.landing}>
+      <div className={styles.container}>
+        <div className={styles.preview}>
+          <div className={styles.previewInfo}>
+            <h1 className={styles.title}>Быстрая проверка физических лиц</h1>
+            <p className={styles.subtitle}>Введите данные для проверки и получите отчет</p>
+            <button type='submit' className={`${styles.btn} ${stylesLink.link}`} onClick={openSignInPopup}>Попробовать бесплатно</button>
           </div>
-          <div className='landing__preview-form'>
-            <div className='landing__form-image'>
-              <img src={report} alt='превью формы запроса' className='landing__form-img'/>
+          <div className={styles.previewForm}>
+            <div className={styles.formImage}>
+              <img src={report} alt='превью формы запроса' className={styles.formImg}/>
             </div>
           </div>
         </div>

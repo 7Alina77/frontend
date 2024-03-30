@@ -2,24 +2,27 @@
   background: #f0f1f6;
 }
 
-.services__container {
+.container {
   max-width: 1240px;
   margin: 0 auto;
   padding: 120px 0 100px;
 }
 
-.services__columns {
+.columns {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.services__column {
+.column {
+  box-sizing: border-box;
+  max-width: 436px;
+  min-height: 152px;
   padding: 6px 30px;
   border-left: 4px solid #4e80ff;
 }
 
-.services__column-title {
+.columnTitle {
   margin: 0 0 20px;
   padding: 0;
   font-weight: 600;
@@ -28,7 +31,7 @@
   font-family: "SF Pro Display", sans-serif;;
 }
 
-.services__column-text {
+.columnText {
   margin: 0;
   padding: 0;
   font-weight: 400;

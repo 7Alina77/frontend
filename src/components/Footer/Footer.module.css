@@ -5,25 +5,25 @@
   border-top: 1px solid #e0e0e0;
 }
 
-.footer__container {
+.container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 59px 100px;
 }
 
-.footer__navigation {
+.navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.footer__links {
+.links {
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-.footer__link {
+.link {
   font-family: "Open Sans Hebrew", sans-serif;
   list-style: none;
   font-weight: 400;
@@ -31,11 +31,11 @@
   color: #586fc1;
 }
 
-.footer__link-terms {
+.linkTerms {
   margin-right: 36px;
 }
 
-.footer__link-terms, .footer__link-mail {
+.linkTerms, .linkMail {
   font-family: "Open Sans Hebrew", sans-serif;
   text-decoration: none;
   font-weight: 700;
@@ -43,6 +43,6 @@
   color: rgb(88, 111, 193);
 }
 
-.footer__link-mail {
+.linkMail {
   margin-left: 20px;
 }
