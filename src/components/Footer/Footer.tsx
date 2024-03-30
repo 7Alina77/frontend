@@ -21,7 +21,7 @@ const Footer: FC = (): React.ReactElement => {
           </ul>
           <ul className='footer__links'>
             <li className='footer__link'>
-              Связаться с нами <a className='footer__link-mail link' href="mailto:monitoringofindividuals@gmail.com">monitoringofindividuals@gmail.com</a>
+              <a className='footer__link-mail link' href="mailto:monitoringofindividuals@gmail.com">monitoringofindividuals@gmail.com</a>
             </li>
           </ul>
         </nav>

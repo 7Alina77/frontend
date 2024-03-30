@@ -17,7 +17,7 @@ const Landing: FC = (): React.ReactElement => {
           <div className='landing__preview-info'>
             <h1 className='landing__title'>Быстрая проверка физических лиц</h1>
             <p className='landing__subtitle'>Введите данные для проверки и получите отчет</p>
-            <button type='submit' className='landing__btn link' onClick={openSignInPopup}>Попробовать</button>
+            <button type='submit' className='landing__btn link' onClick={openSignInPopup}>Попробовать бесплатно</button>
           </div>
           <div className='landing__preview-form'>
             <div className='landing__form-image'>

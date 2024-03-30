@@ -14,13 +14,9 @@
   align-items: center;
 }
 
-.services__column:last-child {
-  border: none;
-}
-
 .services__column {
-  padding: 20px 30px;
-  border-right: 4px solid #4e80ff;
+  padding: 6px 30px;
+  border-left: 4px solid #4e80ff;
 }
 
 .services__column-title {

@@ -8,7 +8,7 @@
 .footer__container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 43px 100px;
+  padding: 59px 100px;
 }
 
 .footer__navigation {
@@ -18,6 +18,7 @@
 }
 
 .footer__links {
+  display: flex;
   margin: 0;
   padding: 0;
 }
@@ -30,16 +31,16 @@
   color: #586fc1;
 }
 
-.footer__link:nth-child(2) {
-  margin-top: 10px;
+.footer__link-terms {
+  margin-right: 36px;
 }
 
 .footer__link-terms, .footer__link-mail {
   font-family: "Open Sans Hebrew", sans-serif;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 16px;
-  color: #586fc1;
+  color: rgb(88, 111, 193);
 }
 
 .footer__link-mail {
