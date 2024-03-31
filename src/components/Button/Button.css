@@ -1,26 +1,27 @@
 .btn {
-	background-color: #fff;
-	color: #4e80ff;
-	width: 190px;
-	height: 45px;
-	border: 2px solid #4e80ff;
-	border-radius: 20px;
-	font-size: 18px;
-	font-weight: 400;
-	line-height: 21px;
-	transition: 0.3s;
+  background-color: #fff;
+  color: #618dff;
+  width: 190px;
+  height: 45px;
+  border: 2px solid #f6f6f6;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  transition: 0.3s;
 }
 
 .btn_blue {
-	background-color: #4e80ff;
-	color: #fff;
+  background-color: #618dff;
+  border: 2px solid #618dff;
+  color: #fff;
 }
 
 .btn_large {
-	width: 604px;
+  width: 604px;
 }
 
 .btn:hover {
-	box-shadow: 4px 4px 12px 0px rgba(16, 16, 16, 0.4);
-	cursor: pointer;
+  box-shadow: 4px 4px 12px 0px rgba(16, 16, 16, 0.4);
+  cursor: pointer;
 }

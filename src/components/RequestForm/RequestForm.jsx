@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -7,6 +7,7 @@ import { ru } from 'date-fns/locale/ru';
 
 import styles from './RequestForm.module.css';
 import checkMark from '../../images/check-mark.svg';
+import blueCheckMark from '../../images/blueCheckMark.svg';
 import Button from '../Button/Button';
 import { PATTERN_NAME, PATTERN_PASSPORT } from '../../utils/constants';
 
@@ -17,12 +18,14 @@ const RequestForm = () => {
     control,
     handleSubmit,
     reset,
+    getValues,
   } = useForm({
     mode: 'all',
   });
 
   // eslint-disable-next-line no-unused-vars
   const [todayDate, setTodayDate] = useState(new Date());
+  const [areAnyErrors, setAreAnyErrors] = useState(false);
 
   registerLocale('ru', ru);
 
@@ -38,6 +41,27 @@ const RequestForm = () => {
     // eslint-disable-next-line no-alert
     return alert(JSON.stringify(data));
   };
+
+  const values = getValues();
+
+  React.useEffect(() => {
+    // если не получится отследить дату, то убрать, либо сделать useEffect на всю форму
+    setAreAnyErrors(
+      errors?.firstName?.message ||
+        errors?.lastName?.message ||
+        errors?.fatherName?.message ||
+        errors?.passport?.message ||
+        errors?.drivingLicence?.message ||
+        errors?.dateOfLicence?.message
+    );
+  }, [
+    errors?.firstName?.message,
+    errors?.lastName?.message,
+    errors?.fatherName?.message,
+    errors?.passport?.message,
+    errors?.drivingLicence?.message,
+    errors?.dateOfLicence?.message,
+  ]);
 
   return (
     <section className={styles.formSection}>
@@ -163,52 +187,51 @@ const RequestForm = () => {
             />
           </label>
           <p className={styles.error}>{errors?.passport?.message}</p>
-          <div className={styles.drivingBlock}>
-            <label htmlFor="driving-licence" className={styles.inputTitle}>
-              Водительское удостоверение
-              <input
-                id="driving-licence"
-                className={`${styles.input} ${styles.inputSmall}`}
-                {...register('drivingLicence', {
-                  pattern: {
-                    value: PATTERN_PASSPORT,
-                    message: 'Введите водительское удостоверения в виде 4000980015',
-                  },
-                  maxLength: {
-                    value: 10,
-                    message: 'Максимум 10 символов',
-                  },
-                })}
-              />
-              <p className={styles.error}>{errors?.drivingLicence?.message}</p>
-            </label>
 
-            <Controller
-              control={control}
-              name="dateOfLicence"
-              render={({ field: { onChange, onBlur, value } }) => (
-                // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                <label htmlFor="date-of-licence" className={styles.inputTitle}>
-                  Дата выдачи водительского удостоверения
-                  <DatePicker
-                    onChange={onChange} // send value to hook form
-                    onBlur={onBlur} // notify when input is touched/blur
-                    selected={value}
-                    locale="ru"
-                    minDate="1900"
-                    maxDate={todayDate}
-                    showYearDropdown
-                    dateFormat="dd.MM.yyyy"
-                    scrollableYearDropdown
-                    yearDropdownItemNumber={100}
-                    changeMonth
-                    changeYear
-                    className={`${styles.input} ${styles.inputMedium}`}
-                  />
-                </label>
-              )}
+          <label htmlFor="driving-licence" className={styles.inputTitle}>
+            Водительское удостоверение
+            <input
+              id="driving-licence"
+              className={`${styles.input}`}
+              {...register('drivingLicence', {
+                pattern: {
+                  value: PATTERN_PASSPORT,
+                  message: 'Введите водительское удостоверения в виде 4000980015',
+                },
+                maxLength: {
+                  value: 10,
+                  message: 'Максимум 10 символов',
+                },
+              })}
             />
-          </div>
+            <p className={styles.error}>{errors?.drivingLicence?.message}</p>
+          </label>
+
+          <Controller
+            control={control}
+            name="dateOfLicence"
+            render={({ field: { onChange, onBlur, value } }) => (
+              // eslint-disable-next-line jsx-a11y/label-has-associated-control
+              <label htmlFor="date-of-licence" className={styles.inputTitle}>
+                Дата выдачи водительского удостоверения
+                <DatePicker
+                  onChange={onChange} // send value to hook form
+                  onBlur={onBlur} // notify when input is touched/blur
+                  selected={value}
+                  locale="ru"
+                  minDate="1900"
+                  maxDate={todayDate}
+                  showYearDropdown
+                  dateFormat="dd.MM.yyyy"
+                  scrollableYearDropdown
+                  yearDropdownItemNumber={100}
+                  changeMonth
+                  changeYear
+                  className={`${styles.input}`}
+                />
+              </label>
+            )}
+          />
         </div>
         <div className={styles.btnBlock}>
           <Button type="submit" btnText="Получить отчет" isBtnBlue isBtnDisabled={!isValid} />
@@ -225,31 +248,142 @@ const RequestForm = () => {
       <div className={styles.description}>
         <ul className={styles.descriptionTitle}>Проверка по следующим параметрам</ul>
         <li className={styles.descriptionBlock}>
-          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <img
+            className={styles.descriptionCheckMark}
+            src={
+              values.firstName &&
+              values.lastName &&
+              values.fatherName &&
+              values.dateOfBirth &&
+              !(
+                errors?.firstName?.message ||
+                errors?.lastName?.message ||
+                errors?.fatherName?.message ||
+                errors?.passport?.message
+              )
+                ? blueCheckMark
+                : checkMark
+            }
+            alt="галка"
+          />
           <p className={styles.descriptionText}>Наличие исполнительных производств</p>
         </li>
         <li className={styles.descriptionBlock}>
-          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <img
+            className={styles.descriptionCheckMark}
+            src={
+              values.firstName &&
+              values.lastName &&
+              values.fatherName &&
+              values.dateOfBirth &&
+              !(
+                errors?.firstName?.message ||
+                errors?.lastName?.message ||
+                errors?.fatherName?.message ||
+                errors?.passport?.message
+              )
+                ? blueCheckMark
+                : checkMark
+            }
+            alt="галка"
+          />
           <p className={styles.descriptionText}>Узнать ИНН</p>
         </li>
         <li className={styles.descriptionBlock}>
-          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <img
+            className={styles.descriptionCheckMark}
+            src={
+              values.firstName &&
+              values.lastName &&
+              values.fatherName &&
+              values.dateOfBirth &&
+              !(
+                errors?.firstName?.message ||
+                errors?.lastName?.message ||
+                errors?.fatherName?.message ||
+                errors?.passport?.message
+              )
+                ? blueCheckMark
+                : checkMark
+            }
+            alt="галка"
+          />
           <p className={styles.descriptionText}>Действительность паспорта</p>
         </li>
         <li className={styles.descriptionBlock}>
-          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <img
+            className={styles.descriptionCheckMark}
+            src={
+              values.firstName &&
+              values.lastName &&
+              values.fatherName &&
+              values.dateOfBirth &&
+              !(
+                errors?.firstName?.message ||
+                errors?.lastName?.message ||
+                errors?.fatherName?.message ||
+                errors?.passport?.message
+              )
+                ? blueCheckMark
+                : checkMark
+            }
+            alt="галка"
+          />
           <p className={styles.descriptionText}>Наличие банкротства</p>
         </li>
         <li className={styles.descriptionBlock}>
-          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <img
+            className={`${styles.descriptionCheckMark} `}
+            src={
+              values.drivingLicence && values.dateOfLicence && !areAnyErrors
+                ? blueCheckMark
+                : checkMark
+            }
+            alt="галка"
+          />
+
           <p className={styles.descriptionText}>Действительность водительских прав</p>
         </li>
         <li className={styles.descriptionBlock}>
-          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <img
+            className={styles.descriptionCheckMark}
+            src={
+              values.firstName &&
+              values.lastName &&
+              values.fatherName &&
+              values.dateOfBirth &&
+              !(
+                errors?.firstName?.message ||
+                errors?.lastName?.message ||
+                errors?.fatherName?.message ||
+                errors?.passport?.message
+              )
+                ? blueCheckMark
+                : checkMark
+            }
+            alt="галка"
+          />
           <p className={styles.descriptionText}>Является ли человек самозанятым</p>
         </li>
         <li className={styles.descriptionBlock}>
-          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <img
+            className={styles.descriptionCheckMark}
+            src={
+              values.firstName &&
+              values.lastName &&
+              values.fatherName &&
+              values.dateOfBirth &&
+              !(
+                errors?.firstName?.message ||
+                errors?.lastName?.message ||
+                errors?.fatherName?.message ||
+                errors?.passport?.message
+              )
+                ? blueCheckMark
+                : checkMark
+            }
+            alt="галка"
+          />
           <p className={styles.descriptionText}>Проверка на террориста</p>
         </li>
       </div>
