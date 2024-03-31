@@ -2,60 +2,52 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #f0f1f6;
+  background-color: #f6f6f6;
+  padding: 80px 0 100px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #d7e0ff;
+  background-color: #ffffff;
   border-radius: 40px;
+  border: 20px solid #d7e0ff;
 }
 
 .formTitle {
   width: 100%;
-  padding: 30px 0 30px 20px;
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 31px;
-  background-color: #f0f3ff;
-  margin: 20px 20px 0 22px;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  width: 625px;
-  transform: translate(0px, 2px);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 31.2px;
+  margin: 29.5px 0 0 28px;
 }
 
 .formBlock {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 2px solid #ddd;
-  /* border-radius: 20px; */
-  width: 645px;
-  margin: 0px 20px 20px;
-  padding: 30px 0 0;
-  background-color: #f6f6f6;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  min-width: 644px;
+  margin: 29.5px 28px 20px;
+  background-color: #fff;
 }
 
 .inputTitle {
   display: flex;
   flex-direction: column;
-  margin: 0px 0 0 12px;
+  margin: 0px 0 0 0px;
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
+  color: #7790d3;
 }
 
 .input {
   margin: 0 0 0;
-  padding: 0 8px 0 0;
-  width: 320px;
+  padding: 0 8px 0 16px;
+  min-width: 320px;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: #f6f6f6;
   height: 48px;
   border: none;
   font-size: 20px;
@@ -67,15 +59,6 @@
   display: flex;
   flex-direction: row;
   column-gap: 5px;
-}
-
-.inputMedium {
-  width: 343px;
-}
-
-.inputSmall {
-  width: 246px;
-  margin: 0;
 }
 
 .inputDate {
@@ -98,7 +81,7 @@
   justify-content: flex-start;
   border-radius: 9px;
   max-width: 585px;
-  background-color: #f0f1f6;
+  background-color: #f6f6f;
   margin: 0 0 0 40px;
   padding: 0 20px;
 }
@@ -118,7 +101,7 @@
   font-weight: 400;
   line-height: 20px;
   color: #000;
-  margin: 12px 0 10px 12px;
+  margin: 20px 0 20px 12px;
   letter-spacing: -0.24px;
 }
 
@@ -128,14 +111,17 @@
 }
 
 .btnBlock {
-  margin: 20px 0 30px 24px;
+  margin: 56px 0 58px 28px;
   display: flex;
   flex-direction: row;
   column-gap: 20px;
-  background-color: #d7e0ff;
 }
 
 .descriptionCheckMark {
   width: 19.5px;
   object-fit: contain;
+}
+
+.uncheckedCheckMark {
+  border: 1px solid red;
 }

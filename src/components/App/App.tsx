@@ -9,7 +9,7 @@ import SignInPopup from '../SignInPopup/SignInPopup';
 import SignUpPopup from '../SignUpPopup/SignUpPopup';
 import Report from '../../pages/Report/Report';
 import AuthorisedUserPage from '../../pages/AuthorisedUserPage/AuthorisedUserPage';
-import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
+// import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
 
 const App: FC = (): React.ReactElement => {
   const navigate = useNavigate();
@@ -44,7 +44,8 @@ const App: FC = (): React.ReactElement => {
         />
         <Route
           path="/registereduser"
-          element={<ProtectedRouteElement element={<AuthorisedUserPage />} />}
+          element={<AuthorisedUserPage />}
+          // element={<ProtectedRouteElement element={<AuthorisedUserPage />} />}
         />
       </Routes>
 
