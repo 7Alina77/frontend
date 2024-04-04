@@ -15,6 +15,9 @@ on:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          ref:
+            Develop
       - uses: actions/setup-node@v4
         with:
           node-version: 20
