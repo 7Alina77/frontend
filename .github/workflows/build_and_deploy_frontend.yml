@@ -6,9 +6,9 @@ on:
       - closed
     branches:
       - Develop
-
   workflow_dispatch:
 
+jobs:
   build_frontend:
     name: Build and push to dockerhub
     runs-on: ubuntu-latest
