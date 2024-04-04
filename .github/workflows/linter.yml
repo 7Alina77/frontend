@@ -26,4 +26,13 @@ jobs:
         uses: super-linter/super-linter@v6.3.0
         env:
           DEFAULT_BRANCH: Develop
+          VALIDATE_CSS: true
+          VALIDATE_HTML: trueJAVASCRIPT_ES
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JAVASCRIPT_STANDARD: true
+          VALIDATE_JSON: true
+          VALIDATE_JSX: true
+          VALIDATE_TYPESCRIPT_ES: true
+          VALIDATE_TYPESCRIPT_STANDARD: true
+          VALIDATE_YAML: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
