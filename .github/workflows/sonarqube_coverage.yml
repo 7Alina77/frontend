@@ -9,8 +9,9 @@ jjobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
+          ref: Develop
           fetch-depth: 0
       - uses: sonarsource/sonarqube-scan-action@master
         env:
