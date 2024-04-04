@@ -54,7 +54,8 @@ jobs:
           script: |
             cd /home/code/infra/
             docker compose -f docker-compose-test-server.yml down
-            docker image rm ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}/monitoring_backend:latest
+            docker image rm ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}/monitoring_gateway:latest
+            docker image rm ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}/monitoring_report:latest
             docker image rm ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}/monitoring_frontend:latest
             docker image rm redis:alpine
             docker image rm postgres:13.3-alpine

@@ -1,0 +1,65 @@
+name: build_and_deploy_prod_server
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - Deploy
+  workflow_dispatch:
+
+jobs:
+  build_frontend:
+    name: Build and push to dockerhub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref:
+            Deploy
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: sed -i 's#http://ratproject.ru#https://ratproject.ru#g' src/utils/Api.ts
+      - run: npm run build || true
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}
+          password: ${{ secrets.DOCKER_PASSWORD_TEST_SERVER }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./
+          file: infra/Dockerfile_frontend
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}/monitoring_frontend:latest
+
+  deploy_frontend:
+    name: Deploy to prod server
+    runs-on: ubuntu-latest
+    needs:
+      - build_frontend
+    steps:
+      - name: Connect to server and launch docker compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_SERVER_HOST }}
+          username: ${{ secrets.PROD_SERVER_USERNAME }}
+          key: ${{ secrets.SSH_KEY_PROD_SERVER }}
+          script: |
+            cd /home/code/infra/
+            docker compose -f docker-compose-prod-server.yml down
+            docker image rm ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}/monitoring_gateway:latest
+            docker image rm ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}/monitoring_report:latest
+            docker image rm ${{ secrets.DOCKER_USERNAME_TEST_SERVER }}/monitoring_frontend:latest
+            docker image rm redis:alpine
+            docker image rm postgres:13.3-alpine
+            docker image prune
+            docker volume rm frontend_volume
+            docker volume prune
+            docker compose -f docker-compose-prod-server.yml up -d
