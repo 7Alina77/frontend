@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo from '../../images/logo.svg';
 import userIcon from '../../images/userIcon.svg';
@@ -7,17 +7,25 @@ import { RootState } from '../../services/actions/types';
 import styles from './Header.module.css';
 import stylesLink from '../../pages/MainPage/MainPage.module.css';
 
-const Header: FC = (): React.ReactElement => {
+interface HeaderProps {
+  isSignUpPopupOpened: () => void;
+  isSignInPopupOpened: () => void;
+}
+
+const Header: FC<HeaderProps> = ({
+  isSignUpPopupOpened,
+  isSignInPopupOpened,
+}): React.ReactElement => {
   // TODO
   const currentUser: any = useSelector((state: RootState) => state.currentUser);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const openSignUpPopup = () => {
-    navigate('/signup');
+    isSignUpPopupOpened();
   };
 
   const openSignInPopup = () => {
-    navigate('/signin');
+    isSignInPopupOpened();
   };
 
   return (
@@ -33,18 +41,22 @@ const Header: FC = (): React.ReactElement => {
           <nav className={styles.nav}>
             <ul className={styles.auth}>
               <li className={`${styles.authItem} ${stylesLink.link}`}>
-                <Link to="/signup" className={styles.buttonLink} onClick={openSignUpPopup}>
-                  <button type="button" className={`${styles.button} ${stylesLink.link}`}>
-                    Регистрация
-                  </button>
-                </Link>
+                <button
+                  type="button"
+                  className={`${styles.button} ${stylesLink.link}`}
+                  onClick={openSignUpPopup}
+                >
+                  Регистрация
+                </button>
               </li>
               <li className={`${styles.authItem} ${stylesLink.link}`}>
-                <Link to="/signin" className={styles.buttonLink} onClick={openSignInPopup}>
-                  <button type="button" className={`${styles.button} ${stylesLink.link}`}>
-                    Вход
-                  </button>
-                </Link>
+                <button
+                  type="button"
+                  className={`${styles.button} ${stylesLink.link}`}
+                  onClick={openSignInPopup}
+                >
+                  Вход
+                </button>
               </li>
             </ul>
           </nav>

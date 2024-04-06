@@ -8,9 +8,10 @@ import { EMAIL_REGEXP } from '../../utils/constants';
 
 interface SignInPopupProps {
   onClose: () => void;
+  isPopupOpened: boolean;
 }
 
-const SignInPopup: FC<SignInPopupProps> = ({ onClose }): React.ReactElement => {
+const SignInPopup: FC<SignInPopupProps> = ({ onClose, isPopupOpened }): React.ReactElement => {
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
   const {
@@ -52,6 +53,7 @@ const SignInPopup: FC<SignInPopupProps> = ({ onClose }): React.ReactElement => {
       onClose={onClose}
       onSubmit={handleSubmit(handleSubmitForm)}
       isFormValid={isValid}
+      isPopupOpened={isPopupOpened}
     >
       <div className="popup__input-container">
         <label className="popup__custom-input">
