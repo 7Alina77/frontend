@@ -11,9 +11,10 @@ import { EMAIL_REGEXP, PATTERN_NAME, PATTERN_PASSWORD } from '../../utils/consta
 
 interface SignUpPopupProps {
   onClose: () => void;
+  isPopupOpened: boolean;
 }
 
-const SignUpPopup: FC<SignUpPopupProps> = ({ onClose }): React.ReactElement => {
+const SignUpPopup: FC<SignUpPopupProps> = ({ onClose, isPopupOpened }): React.ReactElement => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ onClose }): React.ReactElement => {
       onClose={onClose}
       onSubmit={handleSubmit(handleSubmitForm)}
       isFormValid={isValid}
+      isPopupOpened={isPopupOpened}
     >
       <div className="popup__input-container">
         <label className="popup__custom-input">

@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './PopupWithForm.scss';
+import styles from './PopupWithForm.module.css';
 
 interface PopupWithFormProps {
   title: string;
@@ -10,6 +11,7 @@ interface PopupWithFormProps {
   onClose: () => void;
   onSubmit: () => void;
   isFormValid: boolean;
+  isPopupOpened: boolean;
 }
 
 const PopupWithForm: FC<PopupWithFormProps> = ({
@@ -20,31 +22,53 @@ const PopupWithForm: FC<PopupWithFormProps> = ({
   onClose,
   onSubmit,
   isFormValid,
+  isPopupOpened,
 }): React.ReactElement => {
+  document.addEventListener('keydown', closeByEscape);
+  document.addEventListener('mouseup', handeMouseClosePopup);
+
+  function closeByEscape(evt: { key: string }) {
+    if (evt.key === 'Escape') {
+      onClose();
+    }
+  }
+
+  function handeMouseClosePopup(event: MouseEvent) {
+    if (event.target === document.querySelector('.PopupWithForm_popup__fN2Jq')) {
+      onClose();
+    }
+  }
+
+  const handleSignUp = () => {
+    onClose();
+    // надо открыть signUp popup
+  };
+
   return (
-    <section className={`popup popup_type_${name} popup_opened`}>
-      <div className={`popup__container ${name === 'signUp' ? 'popup_signUp' : ''}`}>
-        <form className={`popup__form popup__${name}-form`} noValidate onSubmit={onSubmit}>
-          <div className="popup__title-container">
-            <h2 className="popup__title">{title}</h2>
-            <button className="popup__close-button" type="button" onClick={onClose}>
-              {}
-            </button>
-          </div>
-          {children}
-          <button type="submit" className="popup__save-button" disabled={!isFormValid}>
-            {buttonText}
+    <section className={`${styles.popup} ${isPopupOpened ? styles.popupOpened : ''}`}>
+      {/* <div className={styles.container}> */}
+      <button className={styles.closeButton} type="button" onClick={onClose}>
+        {}
+      </button>
+      <form className={styles.form} noValidate onSubmit={onSubmit}>
+        <button className={styles.closeButton} type="button" onClick={onClose}>
+          {}
+        </button>
+        <h2 className={styles.title}>{title}</h2>
+        {children}
+        <button type="submit" className={styles.saveButton} disabled={!isFormValid}>
+          {buttonText}
+        </button>
+      </form>
+      {name === 'signIn' && (
+        <div className={styles.regSugestion}>
+          Ещё нет аккаунта?
+          <button type="button" className="popup__link" onClick={handleSignUp}>
+            Зарегистрируйтесь
           </button>
-        </form>
-        {name === 'signIn' && (
-          <div className="popup__link-container">
-            Ещё нет аккаунта?
-            <Link className="popup__link" to="/signup">
-              Зарегистрируйтесь
-            </Link>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
+      {/* </div> */}
     </section>
   );
 };

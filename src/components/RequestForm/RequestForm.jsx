@@ -25,6 +25,7 @@ const RequestForm = () => {
 
   // eslint-disable-next-line no-unused-vars
   const [todayDate, setTodayDate] = useState(new Date());
+  // const todayDate = new Date();
   const [areAnyErrors, setAreAnyErrors] = useState(false);
 
   registerLocale('ru', ru);
